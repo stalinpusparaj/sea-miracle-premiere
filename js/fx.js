@@ -1,8 +1,10 @@
 // Sound (synthesised with Web Audio — no files to download), haptics and gold particle bursts.
 
+import { store } from './store.js';
+
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let ctx = null;
-let muted = localStorage.getItem('sm-muted') === '1';
+let muted = store.get('sm-muted') === '1';
 
 export const audio = {
   unlock() {
@@ -10,7 +12,7 @@ export const audio = {
     if (ctx && ctx.state === 'suspended') ctx.resume();
   },
   get muted() { return muted; },
-  set muted(v) { muted = !!v; localStorage.setItem('sm-muted', muted ? '1' : '0'); },
+  set muted(v) { muted = !!v; store.set('sm-muted', muted ? '1' : '0'); },
 };
 
 function tone(freq, start, dur, { type = 'sine', gain = .18, glideTo = null } = {}) {

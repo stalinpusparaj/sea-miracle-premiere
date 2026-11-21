@@ -35,35 +35,35 @@
   <button class="stars" id="stars" type="button" aria-label="0 of 5 stars collected">
     <span class="star" data-star="bottle"></span><span class="star" data-star="ritual"></span><span class="star" data-star="profit"></span><span class="star" data-star="display"></span><span class="star" data-star="results"></span>
   </button>
-  <button id="muteBtn" class="icon-btn" type="button" aria-label="Sound off" aria-pressed="false"><span aria-hidden="true">♪</span></button>
+  <button id="muteBtn" class="icon-btn" type="button" aria-label="Mute sound" aria-pressed="false"><span aria-hidden="true">♪</span></button>
 </header>
 
 <!-- ============ 3D / AR STAGE ============ -->
 <model-viewer id="mv"
   src="models/bottle.glb"
   ios-src="models/bottle.usdz#callToAction=Become%20a%20Partner&checkoutTitle=Heel%20Peel%20Foot%20Gel&checkoutSubtitle=Sea%20Miracle%20%C2%B7%20Professional%20foot%20care"
-  alt="3D model of the Sea Miracle Heel Peel Foot Gel bottle"
-  ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" ar-placement="floor"
-  camera-controls touch-action="pan-y" interaction-prompt="auto" interaction-prompt-threshold="3500"
+  alt="3D model of the Sea Miracle Heel Peel Foot Gel bottle, 150 ml"
+  ar ar-modes="scene-viewer webxr quick-look" ar-scale="fixed" ar-placement="floor"
+  camera-controls touch-action="none" interaction-prompt="auto" interaction-prompt-threshold="3500"
   auto-rotate auto-rotate-delay="2500" rotation-per-second="16deg"
-  camera-orbit="0deg 80deg 0.66m" camera-target="0m 0.122m 0m" field-of-view="30deg"
-  min-camera-orbit="auto 20deg 0.3m" max-camera-orbit="auto 100deg 1.4m"
+  camera-orbit="0deg 80deg 0.42m" camera-target="0m 0.077m 0m" field-of-view="30deg"
+  min-camera-orbit="auto 20deg 0.19m" max-camera-orbit="auto 100deg 0.9m"
   environment-image="neutral" exposure="1.12" shadow-intensity="1.1" shadow-softness="0.85"
   tone-mapping="aces">
 
   <!-- claims hotspots (bottle only) -->
-  <button class="hotspot claim" slot="hotspot-c1" data-position="-0.031m 0.104m 0.016m" data-normal="-0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="Salicylic Acid Powered" type="button"><span>Salicylic Acid Powered</span></button>
-  <button class="hotspot claim" slot="hotspot-c2" data-position="0.031m 0.084m 0.016m" data-normal="0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="No Harsh Urea" type="button"><span>No Harsh Urea</span></button>
-  <button class="hotspot claim" slot="hotspot-c3" data-position="-0.031m 0.046m 0.016m" data-normal="-0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="Visible Results in 45 Minutes" type="button"><span>Visible results in 45 min</span></button>
-  <button class="hotspot claim" slot="hotspot-c4" data-position="0.031m 0.030m 0.016m" data-normal="0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="Formulated in France" type="button"><span>Formulated in France</span></button>
-  <button class="hotspot lid" slot="hotspot-lid" data-position="0m 0.215m 0.004m" data-normal="0m 1m 0m" data-visibility-attribute="visible" type="button" aria-label="Open the bottle"><span>Tap to open</span></button>
+  <button class="hotspot claim" slot="hotspot-c1" data-position="-0.0197m 0.066m 0.0102m" data-normal="-0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="Salicylic Acid Powered" type="button"><span>Salicylic Acid Powered</span></button>
+  <button class="hotspot claim" slot="hotspot-c2" data-position="0.0197m 0.0533m 0.0102m" data-normal="0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="No Harsh Urea" type="button"><span>No Harsh Urea</span></button>
+  <button class="hotspot claim" slot="hotspot-c3" data-position="-0.0197m 0.0292m 0.0102m" data-normal="-0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="Visible Results in 45 Minutes" type="button"><span>Visible results in 45 min</span></button>
+  <button class="hotspot claim" slot="hotspot-c4" data-position="0.0197m 0.0191m 0.0102m" data-normal="0.89m 0m 0.46m" data-visibility-attribute="visible" data-claim="Formulated in France" type="button"><span>Formulated in France</span></button>
+  <button class="hotspot lid" slot="hotspot-lid" data-position="0m 0.1365m 0.0025m" data-normal="0m 1m 0m" type="button" aria-label="Tap to open the bottle"><span>Tap to open</span></button>
 
   <div slot="progress-bar" class="mv-progress" aria-hidden="true"><div class="mv-progress-fill"></div></div>
   <button slot="ar-button" id="arBtn" class="btn-ar" type="button"><span class="ar-cube" aria-hidden="true"></span><span id="arLabel">View on your table</span></button>
 
   <!-- shown only inside the WebXR session (Android Chrome) -->
   <div id="arOverlay">
-    <p class="ar-hint" id="arHint">Point at the table · tap to place · pinch to turn</p>
+    <p class="ar-hint" id="arHint">Drag the bottle to move it · twist with two fingers to turn</p>
     <div class="ar-actions">
       <button id="arOpen" class="btn-glass" type="button">Open the gel</button>
       <button id="arPartner" class="btn-gold" type="button">Become a Partner</button>
@@ -71,23 +71,24 @@
   </div>
 </model-viewer>
 
-<div id="stageNote" class="stage-note" aria-live="polite"></div>
+<div id="stageNote" class="stage-note" aria-hidden="true"></div>
+<p id="srLive" class="sr-only" aria-live="polite"></p>
 
 <!-- ============ SHEETS ============ -->
-<main id="sheet" aria-live="polite">
+<main id="sheet">
 
   <!-- 1 · BOTTLE -->
   <section class="pane" data-pane="bottle" aria-labelledby="h-bottle">
     <p class="eyebrow">01 · The product</p>
     <h2 id="h-bottle">Heel Peel <span class="gold-text">Foot Gel</span></h2>
-    <p class="lead">Spin it. Tap the cap to open it. Then tap <b>View on your table</b> to place the life-size bottle in front of you.</p>
+    <p class="lead">Spin it. Tap the cap to open it. Then tap <b>View on your table</b> to place a true-scale 3D bottle in front of you.</p>
     <div class="chip-row" id="claimChips">
       <span class="chip">Removes dead skin &amp; calluses</span>
       <span class="chip">Balanced hydration</span>
       <span class="chip">Clinically tested</span>
     </div>
     <p class="ar-note" hidden><span>AR opens in Chrome (Android) or Safari (iPhone).</span> <button type="button" class="link-btn" data-copy-link>Copy link</button></p>
-    <p class="fine">Product claims as stated by Sea Miracle.</p>
+    <p class="fine">3D model for illustration, scaled to the 150 ml pack. Product claims as stated by Sea Miracle.</p>
   </section>
 
   <!-- 2 · RITUAL -->
@@ -106,13 +107,14 @@
       <button role="tab" class="step" data-step="2" type="button">03</button>
       <button role="tab" class="step" data-step="3" type="button">04</button>
     </div>
-    <div class="clip-card">
-      <video id="stepVideo" muted playsinline loop preload="metadata" poster="media/step1_soak.jpg"></video>
-      <span class="clip-tag" id="stepTag">10 min</span>
+    <div class="clip-card" role="button" tabindex="0" aria-label="Pause the clip">
+      <video id="stepVideo" muted playsinline loop preload="metadata" poster="media/step1_soak.jpg" aria-hidden="true"></video>
+      <span class="clip-tag" id="stepTag">01 · ≈10 min</span>
     </div>
     <p class="step-count" id="stepCount">Step 1 of 4</p>
     <p class="lead" id="stepText"></p>
     <button id="stepNext" class="btn-gold" type="button">Next step</button>
+    <p class="safety">Professional use only. Do not use on open wounds, active infections, or bleeding or inflamed skin.</p>
   </section>
 
   <!-- 3 · PROFIT -->
@@ -120,13 +122,14 @@
     <p class="eyebrow">03 · Your numbers</p>
     <h2 id="h-profit">What could it add to <span class="gold-text">your salon?</span></h2>
     <div class="result-card" id="resultCard">
-      <p class="result-label">Extra profit per month</p>
+      <p class="result-label">Estimated extra margin per month</p>
       <p class="result-value"><span class="rupee">₹</span><span id="resMonth">0</span></p>
       <p class="result-sub">₹<span id="resYear">0</span> a year · <span id="resWeek">0</span> rituals a week</p>
       <p class="result-math" id="resMath"></p>
+      <p class="result-note">Illustrative estimate from the numbers below — not a promise of earnings. Excludes staff time, rent and taxes.</p>
     </div>
     <div class="presets" role="group" aria-label="Example salons">
-      <span>Try an example:</span>
+      <span>Hypothetical examples:</span>
       <button type="button" class="chip-btn" data-preset="boutique">Boutique salon</button>
       <button type="button" class="chip-btn" data-preset="busy">Busy salon</button>
       <button type="button" class="chip-btn" data-preset="spa">Premium spa</button>
@@ -135,19 +138,19 @@
       <label class="slider"><span>Pedicure clients / month <output id="o-clients"></output></span><input id="s-clients" type="range" min="10" max="300" step="5" aria-describedby="h-clients"><small id="h-clients">How many pedicure clients your salon serves in a month.</small></label>
       <label class="slider"><span>Clients who add Heel Peel <output id="o-uptake"></output></span><input id="s-uptake" type="range" min="5" max="100" step="5" aria-describedby="h-uptake"><small id="h-uptake">Share of those clients who pay for the 45-minute Heel Peel ritual as an add-on.</small></label>
       <label class="slider"><span>Ritual price you charge <output id="o-price"></output></span><input id="s-price" type="range" min="300" max="3000" step="50" aria-describedby="h-price"><small id="h-price">What your client pays for the Heel Peel ritual.</small></label>
-      <label class="slider"><span>Your cost per ritual <output id="o-cost"></output></span><input id="s-cost" type="range" min="50" max="800" step="10" aria-describedby="h-cost"><small id="h-cost">Gel used, film wrap and cotton, plus therapist pay if you pay per treatment.</small></label>
+      <label class="slider"><span>Your cost per ritual <output id="o-cost"></output></span><input id="s-cost" type="range" min="100" max="800" step="10" aria-describedby="h-cost"><small id="h-cost">Gel used, film wrap and cotton, plus therapist pay if you pay per treatment.</small></label>
       <label class="slider"><span>Retail bottles sold / month <output id="o-retail"></output></span><input id="s-retail" type="range" min="0" max="100" step="1" aria-describedby="h-retail"><small id="h-retail">Bottles your clients buy to keep using at home.</small></label>
       <label class="slider"><span>Your margin per bottle <output id="o-margin"></output></span><input id="s-margin" type="range" min="0" max="1200" step="10" aria-describedby="h-margin"><small id="h-margin">Your profit on each bottle: shelf price minus trade price.</small></label>
     </div>
     <button id="sendNumbers" class="btn-gold" type="button">Send my numbers to Sea Miracle</button>
-    <p class="fine">Illustrative estimate calculated only from the numbers you enter. Ask Sea Miracle for trade pricing. Actual results depend on your pricing, volume and costs.</p>
+    <p class="fine">Starting values are examples — set your own. Ask Sea Miracle for trade pricing. Actual results depend on your pricing, volume and costs.</p>
   </section>
 
   <!-- 4 · DISPLAY -->
   <section class="pane" data-pane="display" aria-labelledby="h-display" hidden>
     <p class="eyebrow">04 · In your salon</p>
-    <h2 id="h-display">Try the counter display <span class="gold-text">for real</span></h2>
-    <p class="lead">Tap <b>Place it on your counter</b> to see the life-size display where your clients pay. It shows exactly how much space it needs.</p>
+    <h2 id="h-display">A counter display <span class="gold-text">concept</span></h2>
+    <p class="lead">Tap <b>Place it on your counter</b> to see, at true scale, roughly how much space a Sea Miracle counter display would take where your clients pay.</p>
     <div class="dims"><span id="dimW">–</span><i>×</i><span id="dimD">–</span><i>×</i><span id="dimH">–</span><em>cm · W × D × H</em></div>
     <p class="ar-note" hidden><span>AR opens in Chrome (Android) or Safari (iPhone).</span> <button type="button" class="link-btn" data-copy-link>Copy link</button></p>
     <p class="fine">Concept counter display shown for illustration. Final design, size and availability confirmed by Sea Miracle.</p>
@@ -165,7 +168,7 @@
       <span class="cmp-hint" id="cmpHint" aria-hidden="true">Drag</span>
     </div>
     <div class="thumbs" id="thumbs" role="tablist" aria-label="Client results"></div>
-    <p class="fine">Client photos shared by Sea Miracle partner salons. Individual results vary.</p>
+    <p class="fine">Client photos shared by Sea Miracle partner salons, shown unretouched. Not for open wounds or bleeding cracks. Individual results vary.</p>
   </section>
 
   <button id="nextCta" class="next-cta" type="button" hidden><span class="next-star" aria-hidden="true"></span><span id="nextLabel">Next star</span><span class="next-arrow" aria-hidden="true">→</span></button>
@@ -207,7 +210,7 @@
 <div id="pass" class="modal" role="dialog" aria-modal="true" aria-labelledby="h-pass" hidden>
   <div class="modal-card pass-card">
     <button class="modal-x" type="button" data-close aria-label="Close">×</button>
-    <div class="pass-shine" aria-hidden="true"></div>
+    <div class="pass-shine-wrap" aria-hidden="true"><div class="pass-shine"></div></div>
     <p class="eyebrow">All 5 stars collected</p>
     <h2 id="h-pass">Premiere <span class="gold-text">Partner Pass</span></h2>
     <div class="pass-ticket">

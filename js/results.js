@@ -1,5 +1,6 @@
 // 05 · Results — drag the gold divider between before and after. Photos are shown as supplied (no retouching).
-const PAIRS = [1, 2, 3, 4].map((n) => ({ before: `img/testi/p${n}_before.jpg`, after: `img/testi/p${n}_after.jpg`, thumb: `img/testi/p${n}_thumb.jpg` }));
+// Pair 3 was removed: its source image is a marketing collage with an AI-generated product mock-up.
+const PAIRS = [1, 2, 4].map((n) => ({ before: `img/testi/p${n}_before.jpg`, after: `img/testi/p${n}_after.jpg`, thumb: `img/testi/p${n}_thumb.jpg` }));
 
 export function initResults(api) {
   const pane = document.querySelector('[data-pane="results"]');

@@ -12,7 +12,7 @@ window.SM_CONFIG = {
 
   // Text on the Premiere Partner Pass that unlocks after all 5 stars.
   // Confirm the actual offer with Sea Miracle before the event.
-  passOffer: 'Show this pass to the Sea Miracle team tonight to claim your premiere partner offer.',
+  passOffer: 'Show this pass to the Sea Miracle team to claim your premiere partner offer.',
 
   // Profit calculator defaults (owners change these with sliders; all figures are their own estimates).
   calculator: {

@@ -16,16 +16,15 @@ const PRESETS = {
   busy: { clients: 120, uptake: 40, price: 1000, cost: 150, retail: 15, margin: 250 },
   spa: { clients: 250, uptake: 50, price: 1800, cost: 250, retail: 40, margin: 350 },
 };
-const MILESTONE = 25000; // gold burst every time monthly profit climbs past another ₹25,000
 
 export function initProfit(api) {
   const pane = document.querySelector('[data-pane="profit"]');
   const defaults = Object.assign({ clients: 60, uptake: 40, price: 900, cost: 150, retail: 8, margin: 250 }, api.config.calculator || {});
-  const saved = (() => { try { return JSON.parse(localStorage.getItem('sm-calc') || 'null'); } catch { return null; } })();
+  const saved = api.store.json('sm-calc');
   const vals = Object.assign({}, defaults, saved || {});
   const els = {};
   const presetBtns = [...pane.querySelectorAll('[data-preset]')];
-  let shown = 0; let raf = 0; let lastMilestone = -1; let touched = false; let lastTick = 0;
+  let shown = 0; let raf = 0; let touched = false; let lastTick = 0;
 
   const calc = () => {
     const rituals = vals.clients * vals.uptake / 100;
@@ -66,16 +65,11 @@ export function initProfit(api) {
       const p = PRESETS[b.dataset.preset];
       b.setAttribute('aria-pressed', String(Object.keys(p).every((k) => p[k] === vals[k])));
     });
-    const m = Math.floor(r.month / MILESTONE);
-    if (fromUser && m > lastMilestone && lastMilestone >= 0) {
-      api.burstFrom(pane.querySelector('.result-value'), { count: 22, kind: 'coins' });
-      api.sfx('star'); api.haptic([10, 30, 10]);
-    }
-    lastMilestone = m;
+    if (fromUser) api.announce(`Estimated extra margin ₹${inr(r.month)} a month`);
   }
 
   function changed() {
-    localStorage.setItem('sm-calc', JSON.stringify(vals));
+    api.store.set('sm-calc', JSON.stringify(vals));
     render({ fromUser: true });
     if (!touched) {
       touched = true;
@@ -104,7 +98,7 @@ export function initProfit(api) {
     api.sendWhatsApp(
       `Hello Sea Miracle! I tried the profit calculator at the premiere. My numbers:\n\n` +
       `Pedicure clients/month: ${vals.clients}\nClients adding Heel Peel: ${vals.uptake}%\nRitual price: ₹${inr(vals.price)}\nMy cost per ritual: ₹${inr(vals.cost)}\n` +
-      `Retail bottles/month: ${vals.retail} at ₹${inr(vals.margin)} margin\n\nEstimated extra profit: ₹${inr(r.month)}/month (₹${inr(r.year)}/year)\n` +
+      `Retail bottles/month: ${vals.retail} at ₹${inr(vals.margin)} margin\n\nIllustrative extra margin: ₹${inr(r.month)}/month (₹${inr(r.year)}/year)\n` +
       `Please share your trade pricing.\n\n${api.contextLine()}`);
   });
 
