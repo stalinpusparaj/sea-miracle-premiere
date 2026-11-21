@@ -317,7 +317,7 @@ body[data-tab="bottle"] #toast, body[data-tab="display"] #toast { top: auto; bot
 
 /* landscape phones: stage left, sheet right */
 @media (orientation: landscape) and (max-height: 520px) {
-  model-viewer { width: 52%; height: calc(100% - var(--dock-h) - var(--safe-b)); }
+  model-viewer { width: 52%; top: calc(52px + var(--safe-t)); height: calc(100% - 52px - var(--safe-t) - var(--dock-h) - var(--safe-b)); }
   #sheet { left: 52%; right: 0; top: 0; bottom: calc(var(--dock-h) + var(--safe-b)); max-height: none; width: auto; margin-left: 0;
     border-radius: 0; border-top: 0; border-left: 1px solid var(--line); padding-top: calc(62px + var(--safe-t)); }
   #top { right: 48%; }
@@ -326,5 +326,19 @@ body[data-tab="bottle"] #toast, body[data-tab="display"] #toast { top: auto; bot
   .btn-ar { bottom: 16px; }
   body[data-tab="results"] model-viewer, body[data-tab="profit"] model-viewer { opacity: .5; filter: none; }
   .compare { max-height: 52vh; aspect-ratio: auto; height: 52vh; }
-  #toast, body[data-tab="bottle"] #toast, body[data-tab="display"] #toast { top: calc(64px + var(--safe-t)); bottom: auto; left: 26%; }
+  #toast, body[data-tab="bottle"] #toast, body[data-tab="display"] #toast { top: auto; bottom: calc(var(--dock-h) + var(--safe-b) + 76px); left: 26%; max-width: 46vw; }
+  .result-card { position: relative; top: 0; }
+}
+
+/* short screens (landscape phones, iPhone SE): compact, scrollable splash so "Tap to begin" is always reachable */
+@media (max-height: 600px) {
+  #splash { justify-content: flex-start; overflow-y: auto; padding-top: calc(14px + var(--safe-t)); padding-bottom: calc(14px + var(--safe-b)); }
+  .splash-logo { width: 150px; }
+  #splash .eyebrow { margin-top: 10px; }
+  #splash h1 { font-size: 44px; margin: 6px 0 8px; }
+  #splash h1 br { display: none; }
+  .splash-sub { font-size: 14px; max-width: 520px; margin-bottom: 10px; }
+  .splash-stars { margin-bottom: 12px; }
+  .splash-stars i { width: 16px; height: 16px; }
+  #beginBtn { padding: 12px 24px; font-size: 16px; flex: none; }
 }
